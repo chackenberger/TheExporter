@@ -32,7 +32,7 @@ public class SQLBuilder {
 	 * Creates a new SQLBuilder
 	 * @param fields the fields which should be shown
 	 * @param table the table that should be used
-	 * @param where a where claus for example "cost < 10 OR text LIKE 'test%'"
+	 * @param where a where claus
 	 * @param sortDir sort direction ASC or DESC
 	 * @param sortField the field by which the table should be sorted
 	 */

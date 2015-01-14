@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import at.hackenberger.exporter.error.ConnectionException;
 import at.hackenberger.exporter.error.InvalidOptionException;
+import at.hackenberger.exporter.error.ResultSetReadException;
 import at.hackenberger.exporter.io.ConsoleOutputWriter;
 import at.hackenberger.exporter.io.FileOutputWriter;
 import at.hackenberger.exporter.io.OutputWriter;
@@ -47,10 +49,12 @@ public class Main {
 			op.writeToOutput(out, p.getDelimiter());
 		}catch (IOException ex) {
 			System.out.println(ex.getMessage());
-			ex.printStackTrace();
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
-			ex.printStackTrace();
+		} catch (ConnectionException ex) {
+			System.out.println(ex.getMessage());
+		} catch (ResultSetReadException ex) {
+			System.out.println(ex.getMessage());
 		}
 	}
 
