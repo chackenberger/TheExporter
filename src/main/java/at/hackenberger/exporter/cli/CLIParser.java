@@ -9,6 +9,12 @@ import org.kohsuke.args4j.Option;
 
 import at.hackenberger.exporter.error.InvalidOptionException;
 
+/**
+ * A Parser to parse options and arguments from the CLI for {@link Main}
+ * 
+ * @author Hackenberger Christoph
+ * @version 1.0
+ */
 public class CLIParser {
 
 	@Option(name="-h",usage="the hostname where the database is located. Default: localhost")
@@ -33,7 +39,7 @@ public class CLIParser {
 	@Option(name="-w",usage="where claus of the sql statement example: \"preis > 4\"")
 	private String where;
 
-	@Option(name="-f",usage="comma seperated list of fields which should be shown of the table or * for all fields",
+	@Option(name="-f",usage="comma seperated list of fields which should be shown of the table or \"*\" for all fields",
 			required=true)
 	private String fields;
 
@@ -47,14 +53,26 @@ public class CLIParser {
 	
 	@Option(name="-t",usage="delimiter for the output. Default: ;")
 	private String delimiter=";";
+	
+	@Option(name="--help",help=true,usage="show the help menu")
+	private boolean help;
 
+	/**
+     * This method starts the parsing of the options and arguments
+     *
+     * @param args  the arguments from the main method
+     * @param usage a usage String of how to start the program
+     * @throws InvalidOptionException if any thing goes wrong while parsing (ex: a required option is missing) or --help is called
+     */
 	public void parse(String[] args, String usage) throws InvalidOptionException {
 		CmdLineParser parser = new CmdLineParser(this);
 
 		try {
 			parser.parseArgument(args);
-			if(this.sortField != null && this.sortDir.equalsIgnoreCase("ASC") && this.sortDir.equalsIgnoreCase("DESC"))
-				throw new CmdLineException(parser, new Throwable("sort direction must be ASC or DESC"));
+			if(this.sortField != null && !this.sortDir.equalsIgnoreCase("ASC") && !this.sortDir.equalsIgnoreCase("DESC"))
+				throw new CmdLineException(parser, "sort direction -r must be ASC or DESC", null);
+			if(this.help)
+				throw new CmdLineException(parser, "", null);
 		} catch (CmdLineException ex) {
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			parser.printUsage(out);
@@ -67,7 +85,7 @@ public class CLIParser {
 	}
 
 	public String getUsername() {
-		return this.password;
+		return this.username;
 	}
 
 	public String getPassword() {
