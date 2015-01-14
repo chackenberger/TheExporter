@@ -4,6 +4,12 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
+/**
+ * DataSourceFactory
+ * 
+ * @author Hackenberger Christoph
+ * @version 1.0
+ */
 public class DataSourceFactory {
 
 	public static DataSource getDataSource(String dbms, String hostname, String dbname, String username, String password) {

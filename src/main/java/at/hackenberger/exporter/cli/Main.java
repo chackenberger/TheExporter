@@ -1,11 +1,5 @@
 package at.hackenberger.exporter.cli;
 
-/**
- * Main class for the Balancer
- * 
- * @author Hackenberger Christoph
- * @version 1.0
- */
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -20,6 +14,12 @@ import at.hackenberger.exporter.jdbc.ConnectionFactory;
 import at.hackenberger.exporter.utils.ResultSetDecoder;
 import at.hackenberger.exporter.utils.SQLBuilder;
 
+/**
+ * Main class for the exporter
+ * 
+ * @author Hackenberger Christoph
+ * @version 1.0
+ */
 public class Main {
 
 	public static void main(String[] args) {

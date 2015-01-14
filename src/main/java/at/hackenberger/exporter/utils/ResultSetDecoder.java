@@ -4,14 +4,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Decodes a {@link ResultSet} to an 2d array
+ * 
+ * @author Christoph
+ *
+ */
 public class ResultSetDecoder {
 
 	private ResultSet resultSet;
 
+	/**
+	 * Creates a new object of ResultSetDecoder
+	 * @param resultSet the {@link ResultSet} which should be decoded
+	 */
 	public ResultSetDecoder(ResultSet resultSet) {
 		this.resultSet = resultSet;
 	}
 
+	/**
+	 * Decodes the {@link ResultSet}
+	 * @return decoded {@link ResultSet} as 2d array
+	 * @throws SQLException
+	 */
 	public String[][] decode() throws SQLException {
 		if(resultSet.isClosed())
 			throw new SQLException("Can not decode ResultSet it is already closed");

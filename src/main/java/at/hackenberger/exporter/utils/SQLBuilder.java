@@ -1,5 +1,11 @@
 package at.hackenberger.exporter.utils;
 
+/**
+ * For building a SQL String
+ * 
+ * @author Hackenberger Christoph
+ * @version 1.0
+ */
 public class SQLBuilder {
 
 	private String sortField;
@@ -12,11 +18,24 @@ public class SQLBuilder {
 
 	private String table;
 
+	/**
+	 * Creates a new SQLBuilder
+	 * @param fields the fields which should be shown
+	 * @param table the table that should be used
+	 */
 	public SQLBuilder(String fields, String table) {
 		this.fields = fields;
 		this.table = table;
 	}
 
+	/**
+	 * Creates a new SQLBuilder
+	 * @param fields the fields which should be shown
+	 * @param table the table that should be used
+	 * @param where a where claus for example "cost < 10 OR text LIKE 'test%'"
+	 * @param sortDir sort direction ASC or DESC
+	 * @param sortField the field by which the table should be sorted
+	 */
 	public SQLBuilder(String fields, String table, String where, String sortDir, String sortField) {
 		this(fields,table);
 		this.where = where;
@@ -24,6 +43,10 @@ public class SQLBuilder {
 		this.sortField = sortField;
 	}
 
+	/**
+	 * Generated the SQL String
+	 * @return the SQL String
+	 */
 	public String generateSQL() {
 		String out = "SELECT "+fields+" FROM " + table;
 		if(where != null)

@@ -2,6 +2,12 @@ package at.hackenberger.exporter.io;
 
 import java.io.IOException;
 
+/**
+ * Wirtes a 2d String array to the console
+ * 
+ * @author Christoph Hackenberger
+ * @version 1.0
+ */
 public class ConsoleOutputWriter implements OutputWriter {
 
 	@Override
