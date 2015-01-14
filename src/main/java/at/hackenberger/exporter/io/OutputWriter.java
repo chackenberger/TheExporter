@@ -1,7 +1,9 @@
 package at.hackenberger.exporter.io;
 
+import java.io.IOException;
+
 public interface OutputWriter {
 
-	public abstract void writeToOutput(String output);
+	public void writeToOutput(String[][] output, String delimiter) throws IOException;
 
 }
